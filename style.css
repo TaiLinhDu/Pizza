@@ -1,0 +1,50 @@
+body{
+    background: url(image/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+a:hover{
+    color:red;
+}
+button{
+    cursor: pointer;
+}
+.padding-for-header{
+    padding: 10px 10px;
+}
+.header-center{
+    align-content: center;
+    text-align: center;
+}
+.header-text{
+    background-color: azure;
+    padding : 10px;
+    font-size: 22px;
+    font-family: 'Roboto Bold';
+    color: #263c53;
+}
+.header-text:hover{
+    color:red;
+}
+.shop-name-text{
+    font-size:50px;
+    font-family: Andalus;
+    color: black;
+    front-weight: 900;
+}
+.background-shop-name{
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: azure;
+}
+.infor-form{
+    width: 50%;
+    background-color: burlywood;
+    margin: auto;
+    min-height: 550px;
+    border-radius: 8px;
+}
+.infor-form-full{
+}
