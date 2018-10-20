@@ -28,6 +28,9 @@ button{
 .header-text:hover{
     color:red;
 }
+.text-font{
+    font-family: Andalus;
+}
 .shop-name-text{
     font-size:50px;
     font-family: Andalus;
@@ -40,11 +43,12 @@ button{
     background-color: azure;
 }
 .infor-form{
-    width: 50%;
-    background-color: burlywood;
+    background-color: #decd8d;
     margin: auto;
     min-height: 550px;
     border-radius: 8px;
 }
-.infor-form-full{
+.header-container-text{
+    font-family: Andalus;
+    font-size: 30px;
 }
