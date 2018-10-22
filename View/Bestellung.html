@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="header-center shop-name-text">
@@ -29,31 +30,138 @@
 
                 <br/>
                 <div class="row">
-                <div class="col-lg" style="width: 255px;">
-                    <img class="rounded " src="../image/Pizza1.png">
-                </div>
-                    <div class="col-lg" style="margin:0 auto;">
-                        Pizza Margherita - 4<span class="fa fa-euro"></span>
+                    <div class="col-lg-3 text-center" style="width: 150px;">
+                        <img style="max-height: 100px;" class="rounded " src="../image/Pizza1.png">
+                    </div>
+                    <div class="col-lg-4" style="padding-top: 40px;">
+                        <span>Pizza Margherita - 4 <i class="fa fa-euro"></i></span>
+                    </div>
+                    <div class="col-lg-1" style="padding-top: 40px;">
+                       <select id="select-pizza-margherita">
+                           <option value="0">0</option>
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                       </select>
+                    </div>
+                    <div class="col-lg-4" style="padding-top: 40px;">
+                        <input id="button-pizza-margherita" type="button" value="In Warenkopf hinzu">
                     </div>
                 </div>
                 <br/>
-                <div style="width: 255px;">
-                    <img style="max-height: 170px;" src="../image/single-pizza-pic.png">
-                </div>
-                Pizza Salami
 
-                <br/>
-                <div style="width: 255px;">
-                    <img style="max-height: 170px;" src="../image/Pizza3.png">
+                <div class="row">
+                    <div class="col-lg-3 text-center" style="width: 150px;padding-left:0px;">
+                      <img style="max-height: 100px;" src="../image/single-pizza-pic.png">
+                    </div>
+                    <div class="col-lg" style="padding-top: 40px;">
+                        <span>Pizza Salami - 4.5 <i class="fa fa-euro"></i></span>
+                    </div>
+                    <div class="col-lg-1" style="padding-top: 40px;">
+                        <select id="select-pizza-salami">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4" style="padding-top: 40px;">
+                        <input id="button-pizza-salami" type="button" value="In Warenkopf hinzu">
+                    </div>
                 </div>
                 <br/>
-                <div style="width: 255px;">
-                    <img style="max-height: 170px;" src="../image/Pizza4.png">
+
+                <div class="row">
+                    <div class="col-lg-3 text-center" style="width: 150px;">
+                        <img style="max-height: 100px;" src="../image/Pizza3.png">
+                    </div>
+                    <div class="col-lg" style="padding-top: 40px;">
+                        <span>Pizza Hawai - 4.5 <i class="fa fa-euro"></i></span>
+                    </div>
+                    <div class="col-lg-1" style="padding-top: 40px;">
+                        <select id="select-pizza-hawai">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4" style="padding-top: 40px;">
+                        <input id="button-pizza-hawai" type="button" value="In Warenkopf hinzu">
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-lg-3 text-center" style="width: 150px;padding-left: 0px;">
+                        <img style="max-height: 100px;" src="../image/Pizza4.png">
+                    </div>
+                    <div class="col-lg" style="padding-top: 40px;">
+                        <span>Pizza Casanova - 5.5   <i class="fa fa-euro"></i></span>
+                    </div>
+                    <div class="col-lg-1" style="padding-top: 40px;">
+                        <select id="select-pizza-casanova">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4" style="padding-top: 40px;">
+                        <input id="button-pizza-casanova" type="button" value="In Warenkopf hinzu">
+                    </div>
                 </div>
             </div>
+            <!--right site-->
             <div class="col-lg">
-                hihi
+                <span>Ihre WarenKorb</span>
+                <div id="waren-korb" class="waren-korb border border-dark">
+
+                </div>
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-lg text-right">
+                        <input id="pizza-entwerden" type="button" value="Eine Pizza entwerfen">
+                    </div>
+                    <div class="col-lg text-left">
+                        <input id="warenkorb-leeren" type="button" value="Warenkkorb lerren">
+                    </div>
+                </div>
+                <div>Preis <span id="total-preis"></span> <span class="fa fa-euro"></span></div> <br/>
+                <div style="padding-bottom: 10px;">
+                    <span>Ihre Daten</span>
+                    <div>
+                        <span>Vor Name</span> <br/>
+                        <input type="text" id="firstname"><br/>
+                        <span>Nach Name</span> <br/>
+                        <input type="text" id="lastname"><br/>
+                        <span>Strasse</span> <br/>
+                        <input type="text" id="street"><br/>
+                        <span>Hausnummer</span> <br/>
+                        <input type="text" id="street-number"><br/>
+                        <span>Postleizahl</span> <br/>
+                        <input type="text" id="post-code"><br/>
+                        <span>Stadt</span> <br/>
+                        <input type="text" id="stadt"><br/>
+                        <div class="row" style="padding-top: 10px;">
+                            <div class="col-lg text-right">
+                                <input id="senden" type="button" value="Senden" style="min-width: 140px;">
+                            </div>
+                            <div class="col-lg text-left">
+                                <input id="delete-input" type="button" value="Eingaben löschen  ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </div>

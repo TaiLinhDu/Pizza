@@ -45,10 +45,14 @@ button{
 .infor-form{
     background-color: #decd8d;
     margin: auto;
-    min-height: 550px;
+    min-height: 600px;
     border-radius: 8px;
 }
 .header-container-text{
     font-family: Andalus;
     font-size: 30px;
+}
+.waren-korb{
+    min-height: 100px;
+    background-color: #dec380;
 }
