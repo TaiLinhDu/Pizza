@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div class="header-center shop-name-text">
+<header class="header-center shop-name-text">
     <span class="background-shop-name">Asia Pizza</span>
-</div>
+</header>
 <nav class="header-center padding-for-header">
     <button class="header-text" onclick="location.href='Index.html'">Übersicht</button>
     <button class="header-text" onclick="location.href='Bestellung.html'">Bestellung</button>
@@ -19,25 +19,25 @@
     <button class="header-text" onclick="location.href='Baecker.html'">Bäcker</button>
     <button class="header-text" onclick="location.href='Fahrer.html'">Fahrer</button>
 </nav>
-<div class="infor-form-full">
+<section class="infor-form-full">
     <div class="infor-form container">
         <div class="text-center py-2 border-bottom-0">
             <span class="header-container-text" style="font-size:20px;">Bestellung</span>
         </div>
         <div class="row text-font">
-            <div class="col-lg" style="font-size:15px;">
+            <div class="col-lg " style="font-size:15px;">
                 Bitte Wählen Sie Ihre Bestellung
 
                 <br/>
-                <div class="row">
+                <div class="row pizza-1">
                     <div class="col-lg-3 text-center" style="width: 150px;">
                         <img style="max-height: 100px;" class="rounded " src="../image/Pizza1.png">
                     </div>
                     <div class="col-lg-4" style="padding-top: 40px;">
-                        <span>Pizza Margherita - 4 <i class="fa fa-euro"></i></span>
+                        <span id="pizza-infor-0"></span> <i class="fa fa-euro"></i>
                     </div>
                     <div class="col-lg-1" style="padding-top: 40px;">
-                       <select id="select-pizza-margherita">
+                       <select id="select-pizza-0">
                            <option value="0">0</option>
                            <option value="1">1</option>
                            <option value="2">2</option>
@@ -47,20 +47,20 @@
                        </select>
                     </div>
                     <div class="col-lg-4" style="padding-top: 40px;">
-                        <input id="button-pizza-margherita" type="button" value="In Warenkopf hinzu">
+                        <input id="button-pizza-0" onclick="setWareninKopf(event)" class="click-to-warenkopf" type="button" value="In Warenkopf hinzu">
                     </div>
                 </div>
                 <br/>
 
-                <div class="row">
+                <div class="row pizza-2">
                     <div class="col-lg-3 text-center" style="width: 150px;padding-left:0px;">
                       <img style="max-height: 100px;" src="../image/single-pizza-pic.png">
                     </div>
                     <div class="col-lg" style="padding-top: 40px;">
-                        <span>Pizza Salami - 4.5 <i class="fa fa-euro"></i></span>
+                        <span id="pizza-infor-1" ></span> <i class="fa fa-euro"></i>
                     </div>
                     <div class="col-lg-1" style="padding-top: 40px;">
-                        <select id="select-pizza-salami">
+                        <select id="select-pizza-1">
                             <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -70,20 +70,20 @@
                         </select>
                     </div>
                     <div class="col-lg-4" style="padding-top: 40px;">
-                        <input id="button-pizza-salami" type="button" value="In Warenkopf hinzu">
+                        <input id="button-pizza-1" onclick="setWareninKopf(event)" class="click-to-warenkopf" type="button" value="In Warenkopf hinzu">
                     </div>
                 </div>
                 <br/>
 
-                <div class="row">
+                <div class="row pizza-3">
                     <div class="col-lg-3 text-center" style="width: 150px;">
                         <img style="max-height: 100px;" src="../image/Pizza3.png">
                     </div>
                     <div class="col-lg" style="padding-top: 40px;">
-                        <span>Pizza Hawai - 4.5 <i class="fa fa-euro"></i></span>
+                        <span id="pizza-infor-2" ></span> <i class="fa fa-euro"></i>
                     </div>
                     <div class="col-lg-1" style="padding-top: 40px;">
-                        <select id="select-pizza-hawai">
+                        <select id="select-pizza-2">
                             <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -93,21 +93,21 @@
                         </select>
                     </div>
                     <div class="col-lg-4" style="padding-top: 40px;">
-                        <input id="button-pizza-hawai" type="button" value="In Warenkopf hinzu">
+                        <input id="button-pizza-2" onclick="setWareninKopf(event)" class="click-to-warenkopf" type="button" value="In Warenkopf hinzu">
                     </div>
                 </div>
                 <br/>
 
-                <div class="row">
+                <div class="row pizza-4">
                     <div class="col-lg-3 text-center" style="width: 150px;padding-left: 0px;">
                         <img style="max-height: 100px;" src="../image/Pizza4.png">
                     </div>
                     <div class="col-lg" style="padding-top: 40px;">
-                        <span>Pizza Casanova - 5.5   <i class="fa fa-euro"></i></span>
+                        <span id="pizza-infor-3" ></span> <i class="fa fa-euro"></i>
                     </div>
                     <div class="col-lg-1" style="padding-top: 40px;">
-                        <select id="select-pizza-casanova">
-                            <option value="0">0</option>
+                        <select id="select-pizza-3">
+                            <option selected value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -116,7 +116,7 @@
                         </select>
                     </div>
                     <div class="col-lg-4" style="padding-top: 40px;">
-                        <input id="button-pizza-casanova" type="button" value="In Warenkopf hinzu">
+                        <input id="button-pizza-3" onclick="setWareninKopf(event)" class="click-to-warenkopf" type="button" value="In Warenkopf hinzu">
                     </div>
                 </div>
             </div>
@@ -164,6 +164,10 @@
 
         </div>
     </div>
-</div>
+</section>
 </body>
+<footer >
+    <span id="footerSlogan" style="color: #ffffff; opacity:0.3; font-size:14px">© 2018 Tai Linh Du. All Rights Reserved  </span>
+</footer>
+<script type = "text/javascript" src = "../js/bestellung.js"></script>
 </html>
