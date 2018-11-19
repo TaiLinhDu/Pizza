@@ -11,11 +11,19 @@ a:hover{
 button{
     cursor: pointer;
 }
+select{
+    border-radius: 5px;
+    background-color: white;
+}
+.with-image{
+    width: 150px;
+}
 .write-in-border{
     width:30px;
     margin-top:-10px !important;
     margin-left:5px;
     background-color: #decd8d;
+    border-color: white;
 }
 .border-line{
     margin-left: 20px;
@@ -39,9 +47,35 @@ button{
 .flex-container > div {
     margin: 10px;
     padding: 10px;
-    font-size: 12px;
+    font-size: 1rem;
 }
-@media only screen and (min-device-width: 1000px){
+.btn-in-warenkorb{
+   padding: 5px;
+    padding-bottom: 0px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 5px;
+    -webkit-appearance:none !important;
+}
+.btn-normal{
+    cursor: pointer;
+    background-color: white;
+    border-radius: 5px;
+    -webkit-appearance:none !important;
+}
+.btn-senden{
+    cursor: pointer;
+    border-radius: 5px;
+    -webkit-appearance:none !important;
+    background-color: green;
+}
+.btn-delete-all{
+    cursor: pointer;
+    border-radius: 5px;
+    -webkit-appearance:none !important;
+    background-color: darkorange;
+}
+@media only screen and (min-device-width: 1024px){
     .padding-for-header{
         padding: 10px 10px;
     }
@@ -52,26 +86,37 @@ button{
     .header-text{
         background-color: azure;
         padding : 10px;
-        font-size: 22px;
+        font-size: 1.5rem;
         font-family: 'Roboto Bold';
         color: #263c53;
+        opacity: 0.8;
     }
     .header-text:hover{
-        color:red;
+        color: blue;
+    }
+    .header-text:visited{
+        color: #dec380;
+    }
+    .header-text:active{
+        color: chartreuse;
     }
     .text-font{
         font-family: Andalus;
     }
     .shop-name-text{
-        font-size:50px;
+        font-size:3rem;
         font-family: Andalus;
         color: black;
         front-weight: 900;
+    }
+    .col-lg{
+        width: 100% !important;
     }
     .background-shop-name{
         padding-left: 10px;
         padding-right: 10px;
         background-color: azure;
+        opacity: 0.8;
     }
     .infor-form{
         background-color: #decd8d;
@@ -81,15 +126,16 @@ button{
     }
     .header-container-text{
         font-family: Andalus;
-        font-size: 30px;
+        font-size: 2rem;
     }
     .waren-korb{
+        padding-left: 5px;
         min-height: 100px;
         background-color: #dec380;
     }
 }
 
-@media only screen and (min-device-width: 768px){
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
     .padding-for-header{
         padding: 10px 10px;
     }
@@ -100,18 +146,18 @@ button{
     .header-text{
         background-color: azure;
         padding : 10px;
-        font-size: 22px;
+        font-size: 2rem;
         font-family: 'Roboto Bold';
         color: #263c53;
     }
     .header-text:hover{
-        color:red;
+        color:blue;
     }
     .text-font{
         font-family: Andalus;
     }
     .shop-name-text{
-        font-size:50px;
+        font-size:3rem;
         font-family: Andalus;
         color: black;
         front-weight: 900;
@@ -120,19 +166,24 @@ button{
         padding-left: 10px;
         padding-right: 10px;
         background-color: azure;
+        opacity: 0.8;
     }
     .infor-form{
         background-color: #decd8d;
         margin: auto;
-        min-height: 600px;
+        min-height: 80rem;
         border-radius: 8px;
+    }
+    .container{
+        max-width: 98% !important;
     }
     .header-container-text{
         font-family: Andalus;
-        font-size: 30px;
+        font-size: 2rem;
     }
     .waren-korb{
-        min-height: 100px;
+        padding-left: 5px;
+        min-height: 13rem;
         background-color: #dec380;
     }
     .colum-halb{
@@ -142,11 +193,12 @@ button{
         position: relative;
         padding-right: 15px;
         padding-left: 15px;
+        font-size: 2rem;
         width: auto !important;
     }
 }
 
-@media only screen and (min-device-width: 360px){
+@media only screen and (min-device-width: 320px) and (max-device-width: 767px){
     .padding-for-header{
         padding: 5px 5px;
     }
@@ -157,18 +209,18 @@ button{
     .header-text{
         background-color: azure;
         padding : 10px;
-        font-size: 22px;
+        font-size: 2rem;
         font-family: 'Roboto Bold';
         color: #263c53;
     }
     .header-text:hover{
-        color:red;
+        color:blue;
     }
     .text-font{
         font-family: Andalus;
     }
     .shop-name-text{
-        font-size:50px;
+        font-size:3rem;
         font-family: Andalus;
         color: black;
         front-weight: 900;
@@ -177,11 +229,12 @@ button{
         padding-left: 10px;
         padding-right: 10px;
         background-color: azure;
+        opacity: 0.8;
     }
     .infor-form{
         background-color: #decd8d;
         margin: auto;
-        min-height: 600px;
+        min-height: 98rem;
         border-radius: 8px;
     }
     .header-container-text{
@@ -189,6 +242,7 @@ button{
         font-size: 30px;
     }
     .waren-korb{
+        padding-left: 5px;
         min-height: 100px;
         background-color: #dec380;
     }
