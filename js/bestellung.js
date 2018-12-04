@@ -28,18 +28,22 @@ listPizza.forEach( function (value,index) {
 });
 
 function CaculationPreisAndUpdateCarts(){
-    //"use strict"
-    var stringShowListOrder = "";
+    "use strict";
     var sumPreis = 0.00;
+    var warenkorb =  document.getElementById("waren-korb");
+    warenkorb.options.length = 0;
     Warenkopf.forEach(function(value){
         sumPreis += value.preis;
-        stringShowListOrder += value.name + " x " + value.numberOfOrder + "<br/>";
+        var option = document.createElement("option");
+        option.value = value.id;
+        option.text = value.name +" X "  + value.numberOfOrder;
+        warenkorb.add(option);
     });
-    document.getElementById("waren-korb").innerHTML = stringShowListOrder;
     document.getElementById("total-preis").innerHTML = sumPreis;
 }
 
 function setWareninKopf(thisDom){
+    "use strice";
     var thisId = thisDom.dataset.id;
     //var thisId=id.replace("button-pizza-","");
     var elementnumberOfOrder = document.getElementById("select-pizza-" + thisId);
@@ -75,12 +79,29 @@ function setWareninKopf(thisDom){
 
 let throwOneGoodDomId = document.getElementById("pizza-entwerden");
 throwOneGoodDomId.onclick = function (){
-    Warenkopf.pop();
-    CaculationPreisAndUpdateCarts();
+    let warenkorb =  document.getElementById("waren-korb");
+    let selectedOptionValue = warenkorb.options[warenkorb.selectedIndex];
+    console.log(selectedOptionValue);
+    console.log(warenkorb.selectedIndex);
+    if(selectedOptionValue == null || selectedOptionValue == undefined) {
+        alert("please choose one pizza to throw away!");
+    }else{
+        let wareId = warenkorb.options[warenkorb.selectedIndex].value;
+        let wareIndexInWarenkorb = 0;
+        Warenkopf.forEach(function (elem,index){
+            if(elem.id == wareId){
+                wareIndexInWarenkorb = index;
+            }
+        });
+        Warenkopf.splice(wareIndexInWarenkorb,1);
+        CaculationPreisAndUpdateCarts();
+    }
+
 }
 
 let clearCartsDomId = document.getElementById("warenkorb-leeren");
 clearCartsDomId.onclick = function () {
+    "use strict";
     Warenkopf = [];
     CaculationPreisAndUpdateCarts();
 }
