@@ -28,6 +28,7 @@ listPizza.forEach( function (value,index) {
 });
 
 function CaculationPreisAndUpdateCarts(){
+    //"use strict"
     var stringShowListOrder = "";
     var sumPreis = 0.00;
     Warenkopf.forEach(function(value){

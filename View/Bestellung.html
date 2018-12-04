@@ -20,24 +20,24 @@
     <button class="header-text" onclick="location.href='Fahrer.html'">Fahrer</button>
 </nav>
 <section class="infor-form-full">
-    <div class="infor-form container">
+    <div class="infor-form my-container">
         <div class="text-center py-2 border-bottom-0">
             <span class="header-container-text" >Bestellung</span>
         </div>
         <div class="row text-font">
             <div class="col-lg "    >
-                <span>Bitte Wählen Sie Ihre Bestellung</span>
+                <span class="opening-sentence">Bitte Wählen Sie Ihre Bestellung</span>
 
                 <br/>
                 <div class="row pizza-1">
                     <div class="col-lg-3 text-center with-image" >
                         <img style="max-height: 100px;" class="rounded " src="../image/Pizza1.png">
                     </div>
-                    <div class="col-lg-4" style="padding-top: 40px;">
+                    <div class="col-lg-4 pizza-name-position" >
                         <span id="pizza-infor-0"></span> <i class="fa fa-euro"></i>
                     </div>
-                    <div class="col-lg-1" style="padding-top: 36px;">
-                       <select id="select-pizza-0">
+                    <div class="col-lg-1 select-pizza-position" >
+                       <select id="select-pizza-0 ">
                            <option value="0">0</option>
                            <option value="1">1</option>
                            <option value="2">2</option>
@@ -46,7 +46,7 @@
                            <option value="5">5</option>
                        </select>
                     </div>
-                    <div class="col-lg-4" style="padding-top: 40px;text-align: center;">
+                    <div class="col-lg-4 in-warenkorb-position" >
                         <a id="button-pizza-0" data-id="0" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
                             <i class="fa fa-cart-plus" style='font-size:20px'></i>
                             <span>In Warenkorb</span>
@@ -59,10 +59,10 @@
                     <div class="col-lg-3 text-center with-image" style="padding-left:0px;">
                       <img style="max-height: 100px;" src="../image/single-pizza-pic.png">
                     </div>
-                    <div class="col-lg" style="padding-top: 40px;">
+                    <div class="col-lg-4 pizza-name-position" >
                         <span id="pizza-infor-1" ></span> <i class="fa fa-euro"></i>
                     </div>
-                    <div class="col-lg-1" style="padding-top: 36px;">
+                    <div class="col-lg-1 select-pizza-position" >
                         <select id="select-pizza-1">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -72,7 +72,7 @@
                             <option value="5">5</option>
                         </select>
                     </div>
-                    <div class="col-lg-4" style="padding-top: 40px;text-align: center;">
+                    <div class="col-lg-4 in-warenkorb-position" >
                         <a id="button-pizza-1" data-id="1" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
                             <i class="fa fa-cart-plus" style='font-size:20px'></i>
                             <span>In Warenkorb</span>
@@ -85,10 +85,10 @@
                     <div class="col-lg-3 text-center with-image" >
                         <img style="max-height: 100px;" src="../image/Pizza3.png">
                     </div>
-                    <div class="col-lg" style="padding-top: 40px;">
+                    <div class="col-lg-4 pizza-name-position" >
                         <span id="pizza-infor-2" ></span> <i class="fa fa-euro"></i>
                     </div>
-                    <div class="col-lg-1" style="padding-top: 36px;">
+                    <div class="col-lg-1 select-pizza-position">
                         <select id="select-pizza-2">
                             <option value="0">0</option>
                             <option value="1">1</option>
@@ -98,7 +98,7 @@
                             <option value="5">5</option>
                         </select>
                     </div>
-                    <div class="col-lg-4" style="padding-top: 40px;text-align: center;">
+                    <div class="col-lg-4 in-warenkorb-position" >
                         <a id="button-pizza-2" data-id="2" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
                             <i class="fa fa-cart-plus" style='font-size:20px'></i>
                             <span>In Warenkorb</span>
@@ -111,10 +111,10 @@
                     <div class="col-lg-3 text-center with-image" style="padding-left: 0px;">
                         <img style="max-height: 100px;" src="../image/Pizza4.png">
                     </div>
-                    <div class="col-lg" style="padding-top: 40px;">
+                    <div class="col-lg-4 pizza-name-position" >
                         <span id="pizza-infor-3" ></span> <i class="fa fa-euro"></i>
                     </div>
-                    <div class="col-lg-1" style="padding-top: 36px;">
+                    <div class="col-lg-1 select-pizza-position" >
                         <select id="select-pizza-3">
                             <option selected value="0">0</option>
                             <option value="1">1</option>
@@ -124,7 +124,7 @@
                             <option value="5">5</option>
                         </select>
                     </div>
-                    <div class="col-lg-4" style="padding-top: 40px;text-align: center;">
+                    <div class="col-lg-4 in-warenkorb-position" >
                         <a id="button-pizza-3" data-id="3" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
                             <i class="fa fa-cart-plus" style='font-size:20px'></i>
                             <span>In Warenkorb</span>
@@ -134,10 +134,10 @@
             </div>
             <!--right site-->
             <div class="col-lg">
-                <span>Ihre WarenKorb</span>
-                <div id="waren-korb" class="waren-korb border border-dark">
+                <span class="opening-sentence">Ihre WarenKorb</span> <br />
+                <select id="waren-korb" size="4" class="waren-korb border border-dark">
 
-                </div>
+                </select>
                 <div class="row" style="padding-top: 10px;">
                     <div class="col-lg text-right">
                         <input id="pizza-entwerden" type="button" class="btn-normal" value="Eine Pizza entwerfen">
@@ -146,7 +146,7 @@
                         <input id="warenkorb-leeren" type="button" class="btn-normal" value="Warenkkorb lerren">
                     </div>
                 </div>
-                <div style="padding-top: 5px;font-size: 2rem;">Preis <span id="total-preis"></span> <span class="fa fa-euro"></span></div> <br/>
+                <div class="preis-order">Preis <span id="total-preis"></span> <span class="fa fa-euro"></span></div> <br/>
                 <div style="padding-bottom: 10px;">
                     <span>Ihre Daten</span>
                     <div>

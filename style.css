@@ -15,8 +15,20 @@ select{
     border-radius: 5px;
     background-color: white;
 }
+.preis-order{
+    padding-top: 5px;
+    font-size: 2rem;
+}
+.my-container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 .with-image{
-    width: 150px;
+    width: 150px !important;
+
 }
 .write-in-border{
     width:30px;
@@ -75,7 +87,11 @@ select{
     -webkit-appearance:none !important;
     background-color: darkorange;
 }
-@media only screen and (min-device-width: 1024px){
+@media only screen and (min-width: 1280px){
+    .my-container {
+        max-width: 80%;
+        height: 80%;
+    }
     .padding-for-header{
         padding: 10px 10px;
     }
@@ -131,11 +147,102 @@ select{
     .waren-korb{
         padding-left: 5px;
         min-height: 100px;
+        width: 100%;
         background-color: #dec380;
+    }
+    .pizza-name-position{
+        padding-top: 40px;
+    }
+    .select-pizza-position{
+        padding-top: 36px;
+    }
+    .in-warenkorb-position{
+        padding-top: 40px;
+
     }
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
+@media only screen and (min-width: 1024px) and (max-width: 1279px){
+    .my-container {
+        max-width: 95%;
+        height: 95%;
+    }
+    .padding-for-header{
+        padding: 10px 10px;
+    }
+    .header-center{
+        align-content: center;
+        text-align: center;
+    }
+    .header-text{
+        background-color: azure;
+        padding : 10px;
+        font-size: 1.5rem;
+        font-family: 'Roboto Bold';
+        color: #263c53;
+        opacity: 0.8;
+    }
+    .header-text:hover{
+        color: blue;
+    }
+    .header-text:visited{
+        color: #dec380;
+    }
+    .header-text:active{
+        color: chartreuse;
+    }
+    .text-font{
+        font-family: Andalus;
+    }
+    .shop-name-text{
+        font-size:3rem;
+        font-family: Andalus;
+        color: black;
+        front-weight: 900;
+    }
+    .col-lg{
+        width: 100% !important;
+    }
+    .background-shop-name{
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: azure;
+        opacity: 0.8;
+    }
+    .infor-form{
+        background-color: #decd8d;
+        margin: auto;
+        min-height: 600px;
+        border-radius: 8px;
+    }
+    .header-container-text{
+        font-family: Andalus;
+        font-size: 2rem;
+    }
+    .waren-korb{
+        padding-left: 5px;
+        min-height: 100px;
+        width: 100%;
+        background-color: #dec380;
+    }
+    .pizza-name-position{
+        padding-top: 40px;
+    }
+    .select-pizza-position{
+        padding-top: 36px;
+    }
+    .in-warenkorb-position{
+        padding-top: 40px;
+
+    }
+}
+
+@media only screen and (min-width: 846px) and (max-width: 1023px){
+    .my-container {
+        max-width: 98%;
+        width: 98% !important;
+        text-align: center;
+    }
     .padding-for-header{
         padding: 10px 10px;
     }
@@ -173,10 +280,10 @@ select{
         margin: auto;
         min-height: 80rem;
         border-radius: 8px;
-    }
-    .container{
         max-width: 98% !important;
+        width: 98% !important;
     }
+
     .header-container-text{
         font-family: Andalus;
         font-size: 2rem;
@@ -184,6 +291,7 @@ select{
     .waren-korb{
         padding-left: 5px;
         min-height: 13rem;
+        width: 100%;
         background-color: #dec380;
     }
     .colum-halb{
@@ -196,9 +304,44 @@ select{
         font-size: 2rem;
         width: auto !important;
     }
+    .col-lg{
+        position: relative;
+        width: 100% !important;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+        flex-basis: initial !important;
+    }
+    .col-lg-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333% !important;
+        max-width: 33.333333%;
+    }
+    .pizza-name-position{
+        padding-top: 40px;
+    }
+    .select-pizza-position{
+        padding-top: 36px;
+    }
+    .in-warenkorb-position{
+        padding-top: 40px;
+
+    }
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 767px){
+@media only screen and (min-width: 320px) and (max-width: 845px){
+    [class*="btn-"]{
+        font-size: 2rem;
+    }
+    .preis-order{
+        padding-top: 5px;
+        font-size: 3rem;
+    }
+    [class*="col-lg-"]{
+        width: auto !important;
+        font-size: 2rem;
+    }
+
     .padding-for-header{
         padding: 5px 5px;
     }
@@ -209,7 +352,7 @@ select{
     .header-text{
         background-color: azure;
         padding : 10px;
-        font-size: 2rem;
+        font-size: 3rem;
         font-family: 'Roboto Bold';
         color: #263c53;
     }
@@ -239,25 +382,53 @@ select{
     }
     .header-container-text{
         font-family: Andalus;
-        font-size: 30px;
+        font-size: 3rem;
+    }
+    .opening-sentence{
+        font-size: 2rem;
     }
     .waren-korb{
         padding-left: 5px;
         min-height: 100px;
+        width: 100%;
         background-color: #dec380;
+    }
+    div[class*="row"] >  div[class*="col-lg-"]{
+        margin: 5px 10px;
+        width: 100% !important;
+    }
+
+    div > select [id*="select-pizza-"]{
+        width: 100% !important;
     }
     .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
         position: relative;
         padding-right: 0px;
         padding-left: 0px;
-        width: auto !important;
+        margin: 0px 0px;
+        padding-top: 10px;
     }
-    .container {
-        max-width: 1000px !important;
-        width: 100% ;
-        padding-right: 0px;
-        padding-left: 0px;
+    .my-container {
+        width: 100%;
+        text-align: center;
         margin-right: auto;
         margin-left: auto;
+    }
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        padding: 30px 0px;
+    }
+
+    div[class*="col-lg"] > div[class*= "pizza-"]{
+        background-color: #dec380;
+    }
+    div[class*="row"] > div[class*="text-"]  {
+        text-align: center !important;
+
     }
 }
