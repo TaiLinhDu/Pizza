@@ -253,9 +253,10 @@ select{
     .header-text{
         background-color: azure;
         padding : 10px;
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-family: 'Roboto Bold';
         color: #263c53;
+        opacity: 0.8;
     }
     .header-text:hover{
         color:blue;
@@ -352,9 +353,10 @@ select{
     .header-text{
         background-color: azure;
         padding : 10px;
-        font-size: 3rem;
+        font-size: 1rem;
         font-family: 'Roboto Bold';
         color: #263c53;
+        opacity: 0.8;
     }
     .header-text:hover{
         color:blue;
