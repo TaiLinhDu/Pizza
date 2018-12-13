@@ -70,6 +70,67 @@ class Fahrer extends Page
     protected function getViewData()
     {
         // to do: fetch data for this view from the database
+        //get Orders
+        $getOrderSQLAbfrage = "SELECT * FROM orders";
+        $OrdersRecords =$this->_database->query($getOrderSQLAbfrage);
+        if(!$OrdersRecords){
+            throw new Exception("Kein Orders ist in Datenbank");
+        }
+        $orders =array();
+        if($OrdersRecords){
+            $Record = $OrdersRecords ->fetch_assoc();
+            while($Record){
+                $thisOrder = array();
+                $OrderId = $Record["OrderId"];
+                //get Address
+                $AddressId  = $Record['AddressId'];
+                $AddressSQLQuery = $this->_database->query("SELECT * FROM address WHERE AddressId = $AddressId");
+                $AddressSQL = $AddressSQLQuery->fetch_assoc();
+
+                $Name = $AddressSQL['FirstName'] . ' ' . $AddressSQL['LastName'];
+                $StreetAndNumber = $AddressSQL['StreetName'] . ' ' . $AddressSQL['StreetNumber'];
+                $PLZAndCity = $AddressSQL['Postcode'] . ' ' .$AddressSQL['City'];
+                //Order status
+                $OrderStatus = $Record['OrderStatus'];
+
+                $thisOrder["orderId"] = $OrderId;
+                $thisOrder["Name"] = $Name;
+                $thisOrder["StreetAndNumber"] = $StreetAndNumber;
+                $thisOrder["PLZAndCity"] = $PLZAndCity;
+                $thisOrder["OrderStatus"] = $OrderStatus;
+
+                //get All ordered Pizza
+                $totalPrice = 0.0;
+                $orderedPizzas = array();
+                $orderedPizzasSQL = $this->_database->query("SELECT * FROM orderedpizza WHERE OrderId = $OrderId");
+                $RecordOrderedPizza = $orderedPizzasSQL->fetch_assoc();
+                While($RecordOrderedPizza){
+                    //get Pizza Record
+                    $pizzaId = $RecordOrderedPizza["PizzaId"];
+                    $numberOfPizza = $RecordOrderedPizza["NumberOfPizza"];
+                    $pizzaInformation = $this->_database->query("SELECT *  FROM pizza WHERE PizzaId = $pizzaId");
+                    $RecordPizzaInfors = $pizzaInformation->fetch_assoc();
+                    $pizzaName = $RecordPizzaInfors["PizzaName"];
+                    $pizzaPrice = $RecordPizzaInfors["PizzaPrice"];
+
+                    $totalPrice += $pizzaPrice * $numberOfPizza;
+
+                    $thisPizza = array();
+                    $thisPizza["pizzaName"] = $pizzaName;
+                    $thisPizza["numberOfPizza"] = $numberOfPizza;
+
+                    array_push($orderedPizzas,$thisPizza);
+
+                    $RecordOrderedPizza = $orderedPizzasSQL->fetch_assoc();
+                }
+                $thisOrder["totalPrice"] = $totalPrice;
+                $thisOrder["orderedPizzas"] = $orderedPizzas;
+                array_push($orders,$thisOrder);
+                $Record = $OrdersRecords->fetch_assoc();
+            }
+        }
+        return $orders;
+
     }
 
     /**
@@ -83,7 +144,7 @@ class Fahrer extends Page
      */
     protected function generateView()
     {
-        $this->getViewData();
+        $orders = $this->getViewData();
         $this->generatePageHeader('to do: change headline');
         // to do: call generateView() for all members
         // to do: output view of this page
@@ -93,37 +154,91 @@ class Fahrer extends Page
                     <div class="text-center py-2 border-bottom-0">
                         <span class="header-container-text" >Fahrer</span>
                     </div>
-                    <form class="text-center" action="#" id="form-kunden" accept-charset="UTF-8" method="post">
-                        <div class="flex-container">
-                            <div><strong>Bestellung xx</strong></div>
+                    <form class="text-center" action="Fahrer.php" id="form-kunden" accept-charset="UTF-8" method="POST">
+FAHRER;
+        foreach ($orders as $order){
+            $orderId = $order["orderId"];
+            $Name = $order["Name"];
+            $StreetAndNumber = $order["StreetAndNumber"];
+            $PLZAndCity = $order["PLZAndCity"];
+            $OrderStatus = (int)$order["OrderStatus"];
+            $pizzas = $order["orderedPizzas"];
+            $totalPrice = $order["totalPrice"];
+
+            echo <<<ORDER
+             <div class="flex-container">
+                            <div><strong>Bestellung $orderId</strong></div>
                             <div>
-                                Tai Linh Du <br/>
-                                Wönnichstrasse .108 <br/>
-                                10317 Berlin
+                                $Name <br/>
+                                $StreetAndNumber <br/>
+                                $PLZAndCity
                             </div>
                             <div>
-                                pizza Pasta
+ORDER;
+            foreach ($pizzas as $pizza){
+                $pizzaName =  $pizza["pizzaName"];
+                $numberOfPizza = $pizza["numberOfPizza"];
+                echo <<<PIZZA
+                   $pizzaName X $numberOfPizza <br />
+PIZZA;
+
+            }
+            echo<<<ORDER
                             </div>
                             <div>
-                                Preis: 20 EUR
+                                Preis: $totalPrice EUR
                             </div>
-                                Status :
-                            <select style="background-color: #decd8d">
-                                <option value="gebacken">Gebacken</option>
-                                <option value="unterwegs">Unterwegs</option>
-                                <option value="ausgeliefert">Ausgeliefert</option>
+                                Status : 
+                            <select name="OrderStatus" style="background-color: #decd8d;margin-left: 5px;" onchange="this.form.submit()" >
+
+            
+                     
+ORDER;
+            switch ($OrderStatus){
+                case 0:
+                case 1:
+                case 2:
+                    echo <<<OPTION
+                        <option  value="gebacken_$orderId" disabled>Gebacken</option>
+                        <option value="unterwegs_$orderId" disabled>Unterwegs</option>
+                        <option value="ausgeliefert_$orderId" disabled>Ausgeliefert</option>
+OPTION;
+                    break;
+                case 3:
+                    echo <<<OPTION
+                        <option  value="gebacken_$orderId" selected>Gebacken</option>
+                        <option value="unterwegs_$orderId" >Unterwegs</option>
+                        <option value="ausgeliefert_$orderId" >Ausgeliefert</option>
+OPTION;
+                    break;
+                case 4:
+                    echo <<<OPTION
+                        <option  value="gebacken_$orderId" >Gebacken</option>
+                        <option value="unterwegs_$orderId" selected>Unterwegs</option>
+                        <option value="ausgeliefert_$orderId" >Ausgeliefert</option>
+OPTION;
+                    break;
+                case 5:
+                    echo <<<OPTION
+                        <option  value="gebacken_$orderId" >Gebacken</option>
+                        <option value="unterwegs_$orderId" >Unterwegs</option>
+                        <option value="ausgeliefert_$orderId" selected>Ausgeliefert</option>
+OPTION;
+                    break;
+
+            }
+            echo <<<ORDER
                             </select>
+                         </div>
+ORDER;
+
+            }
+            echo <<<FAHRER
                             </div>
-            
-                        </div>
-                    </form>
-            
-            
+                       </form>
                 </div>
             </section>
 FAHRER;
-
-
         $this->generatePageFooter();
     }
 
@@ -140,6 +255,22 @@ FAHRER;
     {
         parent::processReceivedData();
         // to do: call processReceivedData() for all members
+        if( isset($_POST["OrderStatus"])){
+            $orderStatusAndOrderId = $_POST["OrderStatus"];
+            list($orderStatus,$orderIdStr) = explode('_',$orderStatusAndOrderId);
+            $orderId = (int)$orderIdStr;
+            $status = 0;
+            if($orderStatus == "gebacken"){
+                $status = 3;
+            }else{
+                $status = 5;
+                if($orderStatus == "unterwegs") {
+                    $status = 4;
+                }
+                $SQLAbfrage = "UPDATE orders SET "." OrderStatus = $status WHERE "." OrderId = $orderId  ";
+                $this->_database->query($SQLAbfrage);
+            }
+        }
     }
 
     /**

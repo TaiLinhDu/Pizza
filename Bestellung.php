@@ -103,10 +103,10 @@ class Bestellung extends Page
                                     <img style="max-height: 100px;" class="rounded " src="image/Pizza1.png">
                                 </div>
                                 <div class="col-lg-4 pizza-name-position" >
-                                    <span id="pizza-infor-0"></span> <i class="fa fa-euro"></i>
+                                    <span id="pizza-infor-1"></span> <i class="fa fa-euro"></i>
                                 </div>
                                 <div class="col-lg-1 select-pizza-position" >
-                                   <select id="select-pizza-0">
+                                   <select id="select-pizza-1">
                                        <option value="0">0</option>
                                        <option value="1">1</option>
                                        <option value="2">2</option>
@@ -116,7 +116,7 @@ class Bestellung extends Page
                                    </select>
                                 </div>
                                 <div class="col-lg-4 in-warenkorb-position" >
-                                    <a id="button-pizza-0" data-id="0" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
+                                    <a id="button-pizza-1" data-id="1" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
                                         <i class="fa fa-cart-plus" style='font-size:20px'></i>
                                         <span>In Warenkorb</span>
                                     </a>
@@ -129,35 +129,9 @@ class Bestellung extends Page
                                   <img style="max-height: 100px;" src="image/single-pizza-pic.png">
                                 </div>
                                 <div class="col-lg-4 pizza-name-position" >
-                                    <span id="pizza-infor-1" ></span> <i class="fa fa-euro"></i>
-                                </div>
-                                <div class="col-lg-1 select-pizza-position" >
-                                    <select id="select-pizza-1">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-4 in-warenkorb-position" >
-                                    <a id="button-pizza-1" data-id="1" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
-                                        <i class="fa fa-cart-plus" style='font-size:20px'></i>
-                                        <span>In Warenkorb</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <br/>
-            
-                            <div class="row pizza-3">
-                                <div class="col-lg-3 text-center with-image" >
-                                    <img style="max-height: 100px;" src="image/Pizza3.png">
-                                </div>
-                                <div class="col-lg-4 pizza-name-position" >
                                     <span id="pizza-infor-2" ></span> <i class="fa fa-euro"></i>
                                 </div>
-                                <div class="col-lg-1 select-pizza-position">
+                                <div class="col-lg-1 select-pizza-position" >
                                     <select id="select-pizza-2">
                                         <option value="0">0</option>
                                         <option value="1">1</option>
@@ -176,16 +150,16 @@ class Bestellung extends Page
                             </div>
                             <br/>
             
-                            <div class="row pizza-4">
-                                <div class="col-lg-3 text-center with-image" style="padding-left: 0px;">
-                                    <img style="max-height: 100px;" src="image/Pizza4.png">
+                            <div class="row pizza-3">
+                                <div class="col-lg-3 text-center with-image" >
+                                    <img style="max-height: 100px;" src="image/Pizza3.png">
                                 </div>
                                 <div class="col-lg-4 pizza-name-position" >
                                     <span id="pizza-infor-3" ></span> <i class="fa fa-euro"></i>
                                 </div>
-                                <div class="col-lg-1 select-pizza-position" >
+                                <div class="col-lg-1 select-pizza-position">
                                     <select id="select-pizza-3">
-                                        <option selected value="0">0</option>
+                                        <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -195,6 +169,32 @@ class Bestellung extends Page
                                 </div>
                                 <div class="col-lg-4 in-warenkorb-position" >
                                     <a id="button-pizza-3" data-id="3" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
+                                        <i class="fa fa-cart-plus" style='font-size:20px'></i>
+                                        <span>In Warenkorb</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <br/>
+            
+                            <div class="row pizza-4">
+                                <div class="col-lg-3 text-center with-image" style="padding-left: 0px;">
+                                    <img style="max-height: 100px;" src="image/Pizza4.png">
+                                </div>
+                                <div class="col-lg-4 pizza-name-position" >
+                                    <span id="pizza-infor-4" ></span> <i class="fa fa-euro"></i>
+                                </div>
+                                <div class="col-lg-1 select-pizza-position" >
+                                    <select id="select-pizza-4">
+                                        <option selected value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 in-warenkorb-position" >
+                                    <a id="button-pizza-4" data-id="4" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
                                         <i class="fa fa-cart-plus" style='font-size:20px'></i>
                                         <span>In Warenkorb</span>
                                     </a>
@@ -224,13 +224,13 @@ class Bestellung extends Page
                                     <span>Nach Name</span> <br/>
                                     <input type="text" id="lastname"><br/>
                                     <span>Strasse</span> <br/>
-                                    <input type="text" id="street"><br/>
+                                    <input type="text" id="street-name"><br/>
                                     <span>Hausnummer</span> <br/>
                                     <input type="text" id="street-number"><br/>
                                     <span>Postleizahl</span> <br/>
-                                    <input type="text" id="post-code"><br/>
+                                    <input type="text" id="postcode"><br/>
                                     <span>Stadt</span> <br/>
-                                    <input type="text" id="stadt"><br/>
+                                    <input type="text" id="city"><br/>
                                     <div class="row" style="padding-top: 10px;">
                                         <div class="col-lg text-right">
                                             <input id="senden" type="button" class="btn-senden" value="Senden" style="min-width: 140px;">
@@ -246,6 +246,7 @@ class Bestellung extends Page
                     </div>
                 </div>
             </section>
+            <script type = "text/javascript" src = "js/bestellung.js"></script>
 BESTELLUNG;
 
 
@@ -265,6 +266,49 @@ BESTELLUNG;
     {
         parent::processReceivedData();
         // to do: call processReceivedData() for all members
+        //Make sure that it is a POST request.
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $post = json_decode(file_get_contents("php://input"));
+                $warenkorb = $post->warenkorb;
+                $address = $post->address;
+                //add new address record
+                $SQLabfrage = "INSERT INTO address SET ".
+                "FirstName = \"$address->firstName\", LastName = \"$address->lastName\", StreetName = \"$address->streetName\"
+                , StreetNumber = \"$address->streetNumber\", Postcode = \"$address->postcode\", City=\"$address->city\"";
+                $this->_database->query ($SQLabfrage);
+
+                //get the inserted addressId
+                $addressId = $this->_database->insert_id;
+
+                //add Order
+                $addOrderSQLabfrage = "INSERT INTO orders SET ".
+                    "AddressId = $addressId";
+                $this->_database->query($addOrderSQLabfrage);
+
+                //get the inserted OrderId
+                $orderId = $this->_database->insert_id;
+
+                //add new ordered pizza record
+                foreach ($warenkorb as $pizza ){
+                    $OrderPizzaSQLabfrage = "INSERT INTO orderedpizza SET"."
+                    PizzaId = $pizza->id , OrderId = $orderId , NumberOfPizza = $pizza->numberOfOrder";
+                    $this->_database->query ($OrderPizzaSQLabfrage);
+                }
+            }
+
+        /*
+        if(isset($_POST["warenkorb"]) || isset($_POST["data"])){
+           $warenhorb = $_POST["warenkorb"];
+           $address = $_POST["address"];
+           //add address
+            $SQLabfrage = "INSERT INTO address SET ".
+                "FirstName = \"$address->firstName\", LastName = \"$address->lastName\", StreetName = \"$address->streetName\"
+                , StreetNumber = \"$address->streetNumber\", Postcode = \"$address->postcode\", City=\"$address->city\"
+                ";
+                $this->database->query ($SQLabfrage);
+                //add pizza
+        }*/
+
     }
 
     /**

@@ -128,7 +128,6 @@ HEADER;
         <footer >
             <span id="footerSlogan" style="color: #ffffff; opacity:0.3; font-size:14px">© 2018 Tai Linh Du. All Rights Reserved  </span>
         </footer >
-        <script type = "text/javascript" src = "js/bestellung.js"></script>
         </html>   
 FOOTER;
 
