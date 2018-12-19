@@ -70,6 +70,49 @@ class Baecker extends Page
     protected function getViewData()
     {
         // to do: fetch data for this view from the database
+        $getOrderSQLAbfrage = "SELECT * FROM orders";
+        $OrdersRecords =$this->_database->query($getOrderSQLAbfrage);
+        if(!$OrdersRecords){
+            throw new Exception("Kein Orders ist in Datenbank");
+        }
+        $orders =array();
+        if($OrdersRecords){
+            $Record = $OrdersRecords ->fetch_assoc();
+            while($Record){
+                $thisOrder = array();
+                $OrderId = $Record["OrderId"];
+                //Order status
+                $OrderStatus = $Record['OrderStatus'];
+                //get All ordered Pizza
+                $orderedPizzas = array();
+                $orderedPizzasSQL = $this->_database->query("SELECT * FROM orderedpizza WHERE OrderId = $OrderId");
+                $RecordOrderedPizza = $orderedPizzasSQL->fetch_assoc();
+                While($RecordOrderedPizza){
+                    //get Pizza Record
+                    $pizzaId = $RecordOrderedPizza["PizzaId"];
+                    $numberOfPizza = $RecordOrderedPizza["NumberOfPizza"];
+                    $pizzaInformation = $this->_database->query("SELECT *  FROM pizza WHERE PizzaId = $pizzaId");
+                    $RecordPizzaInfors = $pizzaInformation->fetch_assoc();
+                    $pizzaName = $RecordPizzaInfors["PizzaName"];
+
+
+                    $thisPizza = array();
+                    $thisPizza["pizzaName"] = $pizzaName;
+                    $thisPizza["numberOfPizza"] = $numberOfPizza;
+
+                    array_push($orderedPizzas,$thisPizza);
+
+                    $RecordOrderedPizza = $orderedPizzasSQL->fetch_assoc();
+                }
+
+                $thisOrder["OrderId"] = $OrderId;
+                $thisOrder["OrderStatus"] = $OrderStatus;
+                $thisOrder["orderedPizzas"] = $orderedPizzas;
+                array_push($orders,$thisOrder);
+                $Record = $OrdersRecords->fetch_assoc();
+            }
+        }
+        return $orders;
     }
 
     /**
@@ -83,7 +126,7 @@ class Baecker extends Page
      */
     protected function generateView()
     {
-        $this->getViewData();
+        $orders = $this->getViewData();
         $this->generatePageHeader('to do: change headline');
         // to do: call generateView() for all members
         // to do: output view of this page
@@ -93,30 +136,95 @@ class Baecker extends Page
                     <div class="text-center py-2 border-bottom-0">
                         <span class="header-container-text" >Bäcker</span>
                     </div>
-                    <form class="text-center" action="#" id="form-kunden" accept-charset="UTF-8" method="post">
-                        <div class="flex-container">
-                            <div><span>Besttellund : Pizza Margherita</span></div>
-                        <div>
-                            <span style="padding: 2px">Bestellt</span>
-                            <input type="radio" name="baeckerStatus" value="Bestellt">
-                        </div>
-                        <div>
-                            Im Ofen
-                            <input type="radio" name="baeckerStatus" value="Im Ofen">
-                        </div>
-                        <div>
-                            Fertig
-                            <input type="radio" name="baeckerStatus" value="Fertig">
-                        </div>
-                </div>
-                </form>
-            
-            
-                </div>
-            </section>
 BAECKER;
+        foreach ($orders as $order){
+            $orderId = $order["OrderId"];
+            $OrderStatus = (int)$order["OrderStatus"];
+            $pizzas = $order["orderedPizzas"];
+
+            echo <<<FORM
+                 <form class="text-center" action="#" id="form-kunden" accept-charset="UTF-8" method="post">
+                        <div class="flex-container">
+                            <div><strong>Bestellung $orderId</strong></div>
+                                <div>
+FORM;
+            foreach ($pizzas as $pizza){
+                $pizzaName =  $pizza["pizzaName"];
+                $numberOfPizza = $pizza["numberOfPizza"];
+                echo <<<PIZZA
+                   $pizzaName X $numberOfPizza <br />
+PIZZA;
+            }
+            switch ($OrderStatus){
+                case 0:
+                    echo <<<INFORMATION
+                        </div>
+                        <div>
+                                    <span style="padding: 2px">Bestellt</span>
+                                    <input type="radio" name="OrderStatus" onclick="this.form.submit()" value="Bestellt_$orderId" checked>
+                                </div>
+                                <div>
+                                    Im Ofen
+                                    <input type="radio" name="OrderStatus" onclick="this.form.submit()" value="ImOfen_$orderId">
+                                </div>
+                                <div>
+                                    Fertig
+                                    <input type="radio" name="OrderStatus" onclick="this.form.submit()" value="Fertig_$orderId">
+                                </div>
+                              </div>
+                        </form>
+                
+INFORMATION;
+                    break;
+                case 1:
+                    echo <<<INFORMATION
+                        </div>
+                        <div>
+                                    <span style="padding: 2px">Bestellt</span>
+                                    <input type="radio" name="OrderStatus" onclick="this.form.submit()" value="Bestellt_$orderId" >
+                                </div>
+                                <div>
+                                    Im Ofen
+                                    <input type="radio" name="OrderStatus" onclick="this.form.submit()" value="ImOfen_$orderId" checked>
+                                </div>
+                                <div>
+                                    Fertig
+                                    <input type="radio" name="OrderStatus" onclick="this.form.submit()" value="Fertig_$orderId">
+                                </div>
+                              </div>
+                        </form>
+INFORMATION;
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    echo <<<INFORMATION
+                            </div>
+                            <div>
+                                        <span style="padding: 2px">Bestellt</span>
+                                        <input type="radio" name="OrderStatus" onclick="this.form.submit()" value="Bestellt_$orderId" >
+                                    </div>
+                                    <div>
+                                        Im Ofen
+                                        <input type="radio" name="OrderStatus" onclick="this.form.submit()" value="ImOfen_$orderId" >
+                                    </div>
+                                    <div>
+                                        Fertig
+                                        <input type="radio" name="OrderStatus" onclick="this.form.submit()" value="Fertig_$orderId" checked>
+                                    </div>
+                                  </div>
+                            </form>
+INFORMATION;
+                    break;
+
+            }
 
 
+        }
+        echo <<<END
+                        </div>
+            </section>
+END;
         $this->generatePageFooter();
     }
 
@@ -133,6 +241,22 @@ BAECKER;
     {
         parent::processReceivedData();
         // to do: call processReceivedData() for all members
+        if( isset($_POST["OrderStatus"])){
+            $orderStatusAndOrderId = $_POST["OrderStatus"];
+            list($orderStatus,$orderIdStr) = explode('_',$orderStatusAndOrderId);
+            if($orderStatus == null || $orderIdStr == null){
+                throw new Exception ("Order Status oder Order Id nicht identifiziert !");
+            }
+            $orderId = (int)$orderIdStr;
+            $status = 0;
+            if($orderStatus == "ImOfen"){
+                $status = 1;
+            }else if( $orderStatus == "Fertig"){
+                $status = 2;
+            }
+            $SQLAbfrage = "UPDATE orders SET "." OrderStatus = $status WHERE "." OrderId = $orderId  ";
+            $this->_database->query($SQLAbfrage);
+        }
     }
 
     /**

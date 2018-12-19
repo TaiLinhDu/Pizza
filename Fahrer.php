@@ -154,7 +154,7 @@ class Fahrer extends Page
                     <div class="text-center py-2 border-bottom-0">
                         <span class="header-container-text" >Fahrer</span>
                     </div>
-                    <form class="text-center" action="Fahrer.php" id="form-kunden" accept-charset="UTF-8" method="POST">
+        
 FAHRER;
         foreach ($orders as $order){
             $orderId = $order["orderId"];
@@ -166,6 +166,7 @@ FAHRER;
             $totalPrice = $order["totalPrice"];
 
             echo <<<ORDER
+            <form class="text-center" action="Fahrer.php" id="form-kunden" accept-charset="UTF-8" method="POST">
              <div class="flex-container">
                             <div><strong>Bestellung $orderId</strong></div>
                             <div>
@@ -197,28 +198,27 @@ ORDER;
             switch ($OrderStatus){
                 case 0:
                 case 1:
-                case 2:
                     echo <<<OPTION
                         <option  value="gebacken_$orderId" disabled>Gebacken</option>
                         <option value="unterwegs_$orderId" disabled>Unterwegs</option>
                         <option value="ausgeliefert_$orderId" disabled>Ausgeliefert</option>
 OPTION;
                     break;
-                case 3:
+                case 2:
                     echo <<<OPTION
                         <option  value="gebacken_$orderId" selected>Gebacken</option>
                         <option value="unterwegs_$orderId" >Unterwegs</option>
                         <option value="ausgeliefert_$orderId" >Ausgeliefert</option>
 OPTION;
                     break;
-                case 4:
+                case 3:
                     echo <<<OPTION
                         <option  value="gebacken_$orderId" >Gebacken</option>
                         <option value="unterwegs_$orderId" selected>Unterwegs</option>
                         <option value="ausgeliefert_$orderId" >Ausgeliefert</option>
 OPTION;
                     break;
-                case 5:
+                case 4:
                     echo <<<OPTION
                         <option  value="gebacken_$orderId" >Gebacken</option>
                         <option value="unterwegs_$orderId" >Unterwegs</option>
@@ -230,12 +230,12 @@ OPTION;
             echo <<<ORDER
                             </select>
                          </div>
+                    </form>
 ORDER;
 
             }
             echo <<<FAHRER
-                            </div>
-                       </form>
+                       
                 </div>
             </section>
 FAHRER;
@@ -258,18 +258,21 @@ FAHRER;
         if( isset($_POST["OrderStatus"])){
             $orderStatusAndOrderId = $_POST["OrderStatus"];
             list($orderStatus,$orderIdStr) = explode('_',$orderStatusAndOrderId);
+            if($orderStatus == null || $orderIdStr == null){
+                throw new Exception ("Order Status oder Order Id nicht identifiziert !");
+            }
             $orderId = (int)$orderIdStr;
             $status = 0;
             if($orderStatus == "gebacken"){
-                $status = 3;
+                $status = 2;
             }else{
-                $status = 5;
+                $status = 4;
                 if($orderStatus == "unterwegs") {
-                    $status = 4;
+                    $status = 3;
                 }
-                $SQLAbfrage = "UPDATE orders SET "." OrderStatus = $status WHERE "." OrderId = $orderId  ";
-                $this->_database->query($SQLAbfrage);
             }
+            $SQLAbfrage = "UPDATE orders SET "." OrderStatus = $status WHERE "." OrderId = $orderId  ";
+            $this->_database->query($SQLAbfrage);
         }
     }
 

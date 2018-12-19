@@ -70,6 +70,7 @@ class Kunden extends Page
     protected function getViewData()
     {
         // to do: fetch data for this view from the database
+
     }
 
     /**
