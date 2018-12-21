@@ -282,11 +282,12 @@ BESTELLUNG;
 
                 //add Order
                 $addOrderSQLabfrage = "INSERT INTO orders SET ".
-                    "AddressId = $addressId";
+                    "AddressId = $addressId , IsComplete = true ";
                 $this->_database->query($addOrderSQLabfrage);
 
                 //get the inserted OrderId
                 $orderId = $this->_database->insert_id;
+                $_SESSION["OrderId"] = $orderId;
 
                 //add new ordered pizza record
                 foreach ($warenkorb as $pizza ){

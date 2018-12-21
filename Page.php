@@ -38,7 +38,7 @@ abstract class Page
      * accessed by all operations of the class.
      */
     protected $_database = null;//new MySQLi($host,$user, $pwd, "asiapizza");
-    
+    protected $sessionId = null;
     // --- OPERATIONS ---
     
     /**
@@ -143,6 +143,37 @@ FOOTER;
      */
     protected function processReceivedData() 
     {
+        session_start();
+        //set Cookie
+        if(isset($_COOKIE['Language']) && isset($_COOKIE['Version']) ){
+            if( session_status() == PHP_SESSION_ACTIVE ){
+                //do nothing
+            }else{
+                //set new session
+                throw new Exception("already cookie , but no session");
+                ini_set('session.gc_maxlifetime', 3600);
+                session_set_cookie_params(3600);
+                //session_start();
+                session_regenerate_id(true);
+                //$_SESSION['OrderId'] = null;
+                //$_SESSION['warenkorb'] = null;
+            }
+
+        }
+        else{
+            setcookie("Language", "PHP");
+            setcookie("Version", "7.0");
+
+            //set new session
+            ini_set('session.gc_maxlifetime', 3600);
+            session_set_cookie_params(3600);
+            //session_start();
+            session_regenerate_id(true);
+            //$_SESSION['OrderId'] = null;
+            //$_SESSION['warenkorb'] = null;
+            throw new Exception("No Cookie, No Session");
+
+        }
         if (get_magic_quotes_gpc()) {
             throw new Exception
                 ("Bitte schalten Sie magic_quotes_gpc in php.ini aus!");

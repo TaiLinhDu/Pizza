@@ -70,6 +70,42 @@ class Kunden extends Page
     protected function getViewData()
     {
         // to do: fetch data for this view from the database
+        $order = null;
+        //session_start();
+        if(isset($_SESSION["OrderId"])){
+            $orderId = (int)$_SESSION["OrderId"];
+            $OrderInforSQLAbfrage = "SELECT * FROM orders  WHERE OrderId = $orderId";
+            $OrderSQReCord = $this->_database->query($OrderInforSQLAbfrage);
+            $thisOrderRecord = $OrderSQReCord->fetch_assoc();
+            if($thisOrderRecord){
+                $order["OrderId"] = $thisOrderRecord["OrderId"];
+                $order["OrderStatus"] = $thisOrderRecord["OrderStatus"];
+                //get Pizza
+                $pizzas = array();
+                $pizzasSQLAbfrage = "SELECT * FROM orderedpizza  WHERE OrderId = $orderId";
+                $pizzaSQLRecord = $this->_database->query($pizzasSQLAbfrage);
+                $thisPizzaRecord = $pizzaSQLRecord->fetch_assoc();
+                while($thisPizzaRecord){
+                    $pizzaId = $thisPizzaRecord["PizzaId"];
+                    //Get Pizza Name
+                    $NameOfPizzaAbfrage = "SELECT * FROM pizza  WHERE PizzaId = $pizzaId";
+                    $pizzaNameRecord = $this->_database->query($NameOfPizzaAbfrage);
+                    $pizzaName = $pizzaNameRecord ->fetch_assoc();
+
+                    $thisPizza["PizzaName"] = $pizzaName["PizzaName"];
+                    $thisPizza["NumberOfPizza"] = $thisPizzaRecord["NumberOfPizza"];
+                    array_push($pizzas,$thisPizza);
+                    $thisPizzaRecord = $pizzaSQLRecord->fetch_assoc();
+                }
+                $order["Pizzas"] = $pizzas;
+                //array_push($orders,$order);
+            }else{
+                throw new Exception("No Order Record hhaa");
+            }
+
+
+        }
+        return $order;
 
     }
 
@@ -84,7 +120,8 @@ class Kunden extends Page
      */
     protected function generateView()
     {
-        $this->getViewData();
+        $order = $this->getViewData();
+        $orderId = $order["OrderId"];
         $this->generatePageHeader('to do: change headline');
         // to do: call generateView() for all members
         // to do: output view of this page
@@ -94,35 +131,156 @@ class Kunden extends Page
                     <div class="text-center py-2 border-bottom-0">
                         <span class="header-container-text" >Kunden</span>
                     </div>
-                        <form class="text-center" action="#" id="form-kunden" accept-charset="UTF-8" method="post">
-                            <div class="flex-container">
-                                <div><span>Pizza Salami</span></div>
-                                    <div>
-                                        <span style="padding: 2px">Bestellt</span>
-                                        <input type="radio" name="kundenStatus" value="Bestellt">
-                                    </div>
-                                    <div>
-                                        Im Ofen
-                                      <input type="radio" name="kundenStatus" value="Im Ofen">
-                                    </div>
-                                    <div>
-                                        Fertig
-                                        <input type="radio" name="kundenStatus" value="Fertig">
-                                    </div>
-                                    <div>
-                                        Unterwegs
-                                        <input type="radio" name="kundenStatus" value="Unterwegs">
-                                    </div>
-                                    <div>
-                                        Geliefert
-                                        <input type="radio" name="kundenStatus" value="Geliefert">
-                                    </div>
-            
+KUNDEN;
+            echo <<<INFOR
+             <div class="flex-container text-center">
+             <div><strong>Deine Bestellung: $orderId  </strong></div>
+             <div>
+                    
+INFOR;
+            $pizzas = $order["Pizzas"];
+            foreach ($pizzas as $pizza){
+                $pizzaName = $pizza["PizzaName"];
+                $pizzaNumber = $pizza["NumberOfPizza"];
+                echo <<<PIZZA
+                    $pizzaName X $pizzaNumber <br />
+PIZZA;
+            }
+                $orderStatus = (int)$order["OrderStatus"];
+                switch ($orderStatus){
+                    case 0:
+                        echo <<<STATUS
+                        </div>
+                            <div>
+                                Bestellt
+                                <input type="radio" name="kundenStatus" checked disabled value="Bestellt">
                             </div>
-                        </form>
+                            <div>
+                                Im Ofen
+                              <input type="radio" name="kundenStatus" disabled value="ImOfen">
+                            </div>
+                            <div>
+                                Fertig
+                                <input type="radio" name="kundenStatus" disabled value="Fertig">
+                            </div>
+                            <div>
+                                Unterwegs
+                                <input type="radio" name="kundenStatus" disabled value="Unterwegs">
+                            </div>
+                            <div>
+                                Geliefert
+                                <input type="radio" name="kundenStatus" disabled value="Geliefert">
+                            </div>
+STATUS;
+                        break;
+                    case 1:
+                        echo <<<STATUS
+                         </div>
+                            <div>
+                                Bestellt
+                                <input type="radio" name="kundenStatus"  disabled value="Bestellt">
+                            </div>
+                            <div>
+                                Im Ofen
+                              <input type="radio" name="kundenStatus" checked disabled value="ImOfen">
+                            </div>
+                            <div>
+                                Fertig
+                                <input type="radio" name="kundenStatus" disabled value="Fertig">
+                            </div>
+                            <div>
+                                Unterwegs
+                                <input type="radio" name="kundenStatus" disabled value="Unterwegs">
+                            </div>
+                            <div>
+                                Geliefert
+                                <input type="radio" name="kundenStatus" disabled value="Geliefert">
+                            </div>
+STATUS;
+                        break;
+                    case 2:
+                        echo <<<STATUS
+                         </div>
+                            <div>
+                                Bestellt
+                                <input type="radio" name="kundenStatus"  disabled value="Bestellt">
+                            </div>
+                            <div>
+                                Im Ofen
+                              <input type="radio" name="kundenStatus" disabled value="ImOfen">
+                            </div>
+                            <div>
+                                Fertig
+                                <input type="radio" name="kundenStatus" checked disabled value="Fertig">
+                            </div>
+                            <div>
+                                Unterwegs
+                                <input type="radio" name="kundenStatus" disabled value="Unterwegs">
+                            </div>
+                            <div>
+                                Geliefert
+                                <input type="radio" name="kundenStatus" disabled value="Geliefert">
+                            </div>
+STATUS;
+                        break;
+                    case 3:
+                        echo <<<STATUS
+                         </div>
+                            <div>
+                                Bestellt
+                                <input type="radio" name="kundenStatus"  disabled value="Bestellt">
+                            </div>
+                            <div>
+                                Im Ofen
+                              <input type="radio" name="kundenStatus" disabled value="ImOfen">
+                            </div>
+                            <div>
+                                Fertig
+                                <input type="radio" name="kundenStatus" disabled value="Fertig">
+                            </div>
+                            <div>
+                                Unterwegs
+                                <input type="radio" name="kundenStatus" checked disabled value="Unterwegs">
+                            </div>
+                            <div>
+                                Geliefert
+                                <input type="radio" name="kundenStatus" disabled value="Geliefert">
+                            </div>
+STATUS;
+                        break;
+                    case 4:
+                        echo <<<STATUS
+                         </div>
+                            <div>
+                                Bestellt
+                                <input type="radio" name="kundenStatus"  disabled value="Bestellt">
+                            </div>
+                            <div>
+                                Im Ofen
+                              <input type="radio" name="kundenStatus" disabled value="ImOfen">
+                            </div>
+                            <div>
+                                Fertig
+                                <input type="radio" name="kundenStatus" disabled value="Fertig">
+                            </div>
+                            <div>
+                                Unterwegs
+                                <input type="radio" name="kundenStatus" disabled value="Unterwegs">
+                            </div>
+                            <div>
+                                Ausgeliefert
+                                <input type="radio" name="kundenStatus" checked disabled value="Ausgeliefert">
+                            </div>
+STATUS;
+                        break;
+
+            }
+
+
+
             
-            
-                </div>
+         echo <<<KUNDEN
+                
             </section>
 KUNDEN;
 
