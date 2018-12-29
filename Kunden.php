@@ -132,6 +132,7 @@ class Kunden extends Page
                         <span class="header-container-text" >Kunden</span>
                     </div>
 KUNDEN;
+        if($order != null){
             echo <<<INFOR
              <div class="flex-container text-center">
              <div><strong>Deine Bestellung: $orderId  </strong></div>
@@ -276,8 +277,9 @@ STATUS;
 
             }
 
-
-
+        }else{
+            echo(" <div style='align-content: center;text-align: center;'>Keine Bestellung verfügbar !</div>");
+        }
             
          echo <<<KUNDEN
                 

@@ -1,3 +1,4 @@
+//Init value for Bestellung--------------------------------------------------------------------------------------------
 let listPizza = [
     {
         name : "Pizza Margherita",
@@ -21,7 +22,19 @@ let listPizza = [
     }
 
 ];
-let Warenkopf = [];
+//get Value warenkorb from Cookie and update Design
+let Warenkopf = readCookie("warenkorb");
+console.log(typeof Warenkopf);
+if (Warenkopf == null || Warenkopf == ""){
+    Warenkopf = [];
+}else{
+    if(!(Warenkopf instanceof Object)){
+    Warenkopf = JSON.parse(Warenkopf);
+    }
+    console.log(typeof Warenkopf);
+    console.log(Warenkopf);
+    CaculationPreisAndUpdateCarts();
+}
 
 let address = {
     firstName : document.getElementById("firstname").value,
@@ -31,7 +44,7 @@ let address = {
     postcode : document.getElementById("postcode").value,
     city : document.getElementById("city").value
 };
-//init infor for pizza;
+//init infor for pizza
 listPizza.forEach( function (value,index) {
     document.getElementById("pizza-infor-"+(index+1)).innerHTML = value.name + "- "+value.preis ;
 });
@@ -91,12 +104,13 @@ function setWareninKopf(thisDom){
                }
            );
        }
+       setWarenkorbInCookie();
        CaculationPreisAndUpdateCarts();
    }
 }
 
 
-//Button Pizza entwerfen
+//delete one gute
 let throwOneGoodDomId = document.getElementById("pizza-entwerden");
 throwOneGoodDomId.onclick = function (){
     let warenkorb =  document.getElementById("waren-korb");
@@ -114,15 +128,17 @@ throwOneGoodDomId.onclick = function (){
             }
         });
         Warenkopf.splice(wareIndexInWarenkorb,1);
+        setCookie("warenkorb",Warenkopf)
         CaculationPreisAndUpdateCarts();
     }
 
 };
-
+// delete all warenkorb
 let clearCartsDomId = document.getElementById("warenkorb-leeren");
 clearCartsDomId.onclick = function () {
     "use strict";
     Warenkopf = [];
+    setCookie("warenkorb","");
     CaculationPreisAndUpdateCarts();
 };
 
@@ -136,7 +152,7 @@ function checkValidAddress (){
     return true;
 }
 
-//Button Senden
+//Button Senden --------------------------------------------------------------------------------------------------------
 var sendenButton = document.getElementById("senden");
 sendenButton.onclick = function (){
     "use strict";
@@ -145,6 +161,7 @@ sendenButton.onclick = function (){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
+                setCookie("warenkorb","");
                 alert("Send Data Success !!")
             }
         };
@@ -167,5 +184,39 @@ sendenButton.onclick = function (){
 let deleteAllInputButton = document.getElementById("delete-input");
 deleteAllInputButton.onclick = function () {
     "use strict";
+    setCookie("warenkorb","");
     location.reload(true);
+}
+//COOKIE ----------------------------------------------------------------------------------------------------------------
+function setCookie(name, value) {
+    "use strict";
+    var cookie = [
+        name,
+        '=',
+        JSON.stringify(value),
+        ";"
+    ].join('');
+    document.cookie = cookie;
+    console.log(document.cookie);
+}
+
+function readCookie(name) {
+    "use strict";
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) {
+            return JSON.parse(
+                c.substring(nameEQ.length, c.length)
+            );
+        }
+    }
+    return null;
+}
+
+function setWarenkorbInCookie(){
+    var warenkorbJson = JSON.stringify(Warenkopf);
+    setCookie("warenkorb",warenkorbJson);
 }

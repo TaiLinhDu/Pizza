@@ -98,7 +98,7 @@ abstract class Page
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             </head>
-            <body>
+            <body >
             <header class="header-center shop-name-text">
                 <span class="background-shop-name">Asia Pizza</span>
             </header>
@@ -145,14 +145,14 @@ FOOTER;
     {
         session_start();
         //set Cookie
-        if(isset($_COOKIE['Language']) && isset($_COOKIE['Version']) ){
+        if(isset($_COOKIE['Language']) && isset($_COOKIE['Version']) && isset($_COOKIE['warenkorb']) ){
             if( session_status() == PHP_SESSION_ACTIVE ){
                 //do nothing
             }else{
                 //set new session
-                throw new Exception("already cookie , but no session");
-                ini_set('session.gc_maxlifetime', 3600);
-                session_set_cookie_params(3600);
+                //throw new Exception("already cookie , but no session");
+                //ini_set('session.gc_maxlifetime', 3600);
+               // session_set_cookie_params(3600);
                 //session_start();
                 session_regenerate_id(true);
                 //$_SESSION['OrderId'] = null;
@@ -163,15 +163,16 @@ FOOTER;
         else{
             setcookie("Language", "PHP");
             setcookie("Version", "7.0");
+            setcookie("warenkorb", "");
 
             //set new session
-            ini_set('session.gc_maxlifetime', 3600);
-            session_set_cookie_params(3600);
+            //ini_set('session.gc_maxlifetime', 3600);
+            //session_set_cookie_params(3600);
             //session_start();
             session_regenerate_id(true);
             //$_SESSION['OrderId'] = null;
             //$_SESSION['warenkorb'] = null;
-            throw new Exception("No Cookie, No Session");
+            //throw new Exception("No Cookie, No Session");
 
         }
         if (get_magic_quotes_gpc()) {
