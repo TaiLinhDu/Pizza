@@ -88,7 +88,7 @@ class Bestellung extends Page
         // to do: call generateView() for all members
         // to do: output view of this page
         echo <<<BESTELLUNG
-            <section class="infor-form-full">
+            <div class="infor-form-full">
                 <div class="infor-form my-container">
                     <div class="text-center py-2 border-bottom-0">
                         <span class="header-container-text" >Bestellung</span>
@@ -100,7 +100,7 @@ class Bestellung extends Page
                             <br/>
                             <div class="row pizza-1">
                                 <div class="col-lg-3 text-center with-image" >
-                                    <img style="max-height: 100px;" class="rounded " src="image/Pizza1.png">
+                                    <img style="max-height: 100px;" class="rounded " src="image/Pizza1.png" alt="Pizza loading">
                                 </div>
                                 <div class="col-lg-4 pizza-name-position" >
                                     <span id="pizza-infor-1"></span> <i class="fa fa-euro"></i>
@@ -116,7 +116,7 @@ class Bestellung extends Page
                                    </select>
                                 </div>
                                 <div class="col-lg-4 in-warenkorb-position" >
-                                    <a id="button-pizza-1" data-id="1" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
+                                    <a id="button-pizza-1" data-id="1" onclick="setWareninKopf(this)" class="btn-in-warenkorb"  >
                                         <i class="fa fa-cart-plus" style='font-size:20px'></i>
                                         <span>In Warenkorb</span>
                                     </a>
@@ -126,7 +126,7 @@ class Bestellung extends Page
             
                             <div class="row pizza-2">
                                 <div class="col-lg-3 text-center with-image" style="padding-left:0px;">
-                                  <img style="max-height: 100px;" src="image/single-pizza-pic.png">
+                                  <img style="max-height: 100px;" src="image/single-pizza-pic.png" alt="Pizza loading">
                                 </div>
                                 <div class="col-lg-4 pizza-name-position" >
                                     <span id="pizza-infor-2" ></span> <i class="fa fa-euro"></i>
@@ -142,7 +142,7 @@ class Bestellung extends Page
                                     </select>
                                 </div>
                                 <div class="col-lg-4 in-warenkorb-position" >
-                                    <a id="button-pizza-2" data-id="2" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
+                                    <a id="button-pizza-2" data-id="2" onclick="setWareninKopf(this)" class="btn-in-warenkorb"  >
                                         <i class="fa fa-cart-plus" style='font-size:20px'></i>
                                         <span>In Warenkorb</span>
                                     </a>
@@ -152,7 +152,7 @@ class Bestellung extends Page
             
                             <div class="row pizza-3">
                                 <div class="col-lg-3 text-center with-image" >
-                                    <img style="max-height: 100px;" src="image/Pizza3.png">
+                                    <img style="max-height: 100px;" src="image/Pizza3.png" alt="Pizza loading">
                                 </div>
                                 <div class="col-lg-4 pizza-name-position" >
                                     <span id="pizza-infor-3" ></span> <i class="fa fa-euro"></i>
@@ -168,7 +168,7 @@ class Bestellung extends Page
                                     </select>
                                 </div>
                                 <div class="col-lg-4 in-warenkorb-position" >
-                                    <a id="button-pizza-3" data-id="3" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
+                                    <a id="button-pizza-3" data-id="3" onclick="setWareninKopf(this)" class="btn-in-warenkorb"  >
                                         <i class="fa fa-cart-plus" style='font-size:20px'></i>
                                         <span>In Warenkorb</span>
                                     </a>
@@ -178,7 +178,7 @@ class Bestellung extends Page
             
                             <div class="row pizza-4">
                                 <div class="col-lg-3 text-center with-image" style="padding-left: 0px;">
-                                    <img style="max-height: 100px;" src="image/Pizza4.png">
+                                    <img style="max-height: 100px;" src="image/Pizza4.png" alt="Pizza loading">
                                 </div>
                                 <div class="col-lg-4 pizza-name-position" >
                                     <span id="pizza-infor-4" ></span> <i class="fa fa-euro"></i>
@@ -194,7 +194,7 @@ class Bestellung extends Page
                                     </select>
                                 </div>
                                 <div class="col-lg-4 in-warenkorb-position" >
-                                    <a id="button-pizza-4" data-id="4" onclick="setWareninKopf(this)" class="btn-in-warenkorb" type="button" >
+                                    <a id="button-pizza-4" data-id="4" onclick="setWareninKopf(this)" class="btn-in-warenkorb" >
                                         <i class="fa fa-cart-plus" style='font-size:20px'></i>
                                         <span>In Warenkorb</span>
                                     </a>
@@ -245,7 +245,7 @@ class Bestellung extends Page
             
                     </div>
                 </div>
-            </section>
+            </div>
             <script type = "text/javascript" src = "js/bestellung.js"></script>
 BESTELLUNG;
 
@@ -271,10 +271,20 @@ BESTELLUNG;
             $post = json_decode(file_get_contents("php://input"));
                 $warenkorb = $post->warenkorb;
                 $address = $post->address;
+
+                //protect SQL Injection
+                $firstName = $this->_database->real_escape_string($address->firstName);
+                $lastName = $this->_database->real_escape_string($address->lastName);
+                $streetName = $this->_database->real_escape_string($address->streetName);
+                $streetNumber = $this->_database->real_escape_string($address->streetNumber);
+                $postcode = $this->_database->real_escape_string($address->postcode);
+                $city = $this->_database->real_escape_string($address->city);
+
+
                 //add new address record
                 $SQLabfrage = "INSERT INTO address SET ".
-                "FirstName = \"$address->firstName\", LastName = \"$address->lastName\", StreetName = \"$address->streetName\"
-                , StreetNumber = \"$address->streetNumber\", Postcode = \"$address->postcode\", City=\"$address->city\"";
+                "FirstName = \"$firstName\", LastName = \"$lastName\", StreetName = \"$streetName\"
+                , StreetNumber = \"$streetNumber\", Postcode = \"$postcode\", City=\"$city\"";
                 $this->_database->query ($SQLabfrage);
 
                 //get the inserted addressId
@@ -291,24 +301,15 @@ BESTELLUNG;
 
                 //add new ordered pizza record
                 foreach ($warenkorb as $pizza ){
+                    // //protect SQL Injection
+                    $pizzaId = $this->_database->real_escape_string($pizza->id);
+                    $numberOfOrder = $this->_database->real_escape_string($pizza->numberOfOrder);
+
                     $OrderPizzaSQLabfrage = "INSERT INTO orderedpizza SET"."
-                    PizzaId = $pizza->id , OrderId = $orderId , NumberOfPizza = $pizza->numberOfOrder";
+                    PizzaId = $pizzaId , OrderId = $orderId , NumberOfPizza = $numberOfOrder";
                     $this->_database->query ($OrderPizzaSQLabfrage);
                 }
             }
-
-        /*
-        if(isset($_POST["warenkorb"]) || isset($_POST["data"])){
-           $warenhorb = $_POST["warenkorb"];
-           $address = $_POST["address"];
-           //add address
-            $SQLabfrage = "INSERT INTO address SET ".
-                "FirstName = \"$address->firstName\", LastName = \"$address->lastName\", StreetName = \"$address->streetName\"
-                , StreetNumber = \"$address->streetNumber\", Postcode = \"$address->postcode\", City=\"$address->city\"
-                ";
-                $this->database->query ($SQLabfrage);
-                //add pizza
-        }*/
 
     }
 

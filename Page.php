@@ -92,7 +92,7 @@ abstract class Page
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
-                <title>Bestellung</title>
+                <title>Pizza Service</title>
                 <link rel="stylesheet" href="style.css">
                 <!-- Bootstrap CSS -->
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -124,10 +124,10 @@ HEADER;
     {
         // to do: output common end of HTML code
         echo <<<FOOTER
-        </body>
         <footer >
             <span id="footerSlogan" style="color: #ffffff; opacity:0.3; font-size:14px">© 2018 Tai Linh Du. All Rights Reserved  </span>
         </footer >
+        </body>
         </html>   
 FOOTER;
 

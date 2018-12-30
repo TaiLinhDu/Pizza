@@ -170,12 +170,17 @@ FAHRER;
              <div class="flex-container">
                             <div><strong>Bestellung $orderId</strong></div>
                             <div>
-                                $Name <br/>
-                                $StreetAndNumber <br/>
-                                $PLZAndCity
-                            </div>
-                            <div>
 ORDER;
+            echo htmlspecialchars($Name);
+            echo ("<br/>");
+            echo htmlspecialchars($StreetAndNumber);
+            echo ("<br/>");
+            echo htmlspecialchars($PLZAndCity);
+            echo <<<ORDER
+                </div>
+                <div>
+ORDER;
+
             foreach ($pizzas as $pizza){
                 $pizzaName =  $pizza["pizzaName"];
                 $numberOfPizza = $pizza["numberOfPizza"];
