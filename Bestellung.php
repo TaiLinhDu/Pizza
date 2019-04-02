@@ -267,50 +267,6 @@ BESTELLUNG;
         parent::processReceivedData();
         // to do: call processReceivedData() for all members
         //Make sure that it is a POST request.
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $post = json_decode(file_get_contents("php://input"));
-                $warenkorb = $post->warenkorb;
-                $address = $post->address;
-
-                //protect SQL Injection
-                $firstName = $this->_database->real_escape_string($address->firstName);
-                $lastName = $this->_database->real_escape_string($address->lastName);
-                $streetName = $this->_database->real_escape_string($address->streetName);
-                $streetNumber = $this->_database->real_escape_string($address->streetNumber);
-                $postcode = $this->_database->real_escape_string($address->postcode);
-                $city = $this->_database->real_escape_string($address->city);
-
-
-                //add new address record
-                $SQLabfrage = "INSERT INTO address SET ".
-                "FirstName = \"$firstName\", LastName = \"$lastName\", StreetName = \"$streetName\"
-                , StreetNumber = \"$streetNumber\", Postcode = \"$postcode\", City=\"$city\"";
-                $this->_database->query ($SQLabfrage);
-
-                //get the inserted addressId
-                $addressId = $this->_database->insert_id;
-
-                //add Order
-                $addOrderSQLabfrage = "INSERT INTO orders SET ".
-                    "AddressId = $addressId , IsComplete = true ";
-                $this->_database->query($addOrderSQLabfrage);
-
-                //get the inserted OrderId
-                $orderId = $this->_database->insert_id;
-                $_SESSION["OrderId"] = $orderId;
-
-                //add new ordered pizza record
-                foreach ($warenkorb as $pizza ){
-                    // //protect SQL Injection
-                    $pizzaId = $this->_database->real_escape_string($pizza->id);
-                    $numberOfOrder = $this->_database->real_escape_string($pizza->numberOfOrder);
-
-                    $OrderPizzaSQLabfrage = "INSERT INTO orderedpizza SET"."
-                    PizzaId = $pizzaId , OrderId = $orderId , NumberOfPizza = $numberOfOrder";
-                    $this->_database->query ($OrderPizzaSQLabfrage);
-                }
-            }
-
     }
 
     /**

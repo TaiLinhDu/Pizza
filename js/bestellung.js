@@ -161,19 +161,23 @@ sendenButton.onclick = function (){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
-                setCookie("warenkorb","");
-                alert("Send Data Success !!")
+                if(this.responseText === "OK"){
+                    setCookie("warenkorb","");
+                    alert("Bestellung successfully!!");
+                } else {
+                    alert("Bestellung unsuccessfully!!");
+                }
+                
             }
         };
-        xhttp.open("POST","Bestellung.php");
+        xhttp.open("POST","PutToDb.php");
+        //need Header type to give the php datei infor abour this information
         xhttp.setRequestHeader("Content-Type", "application/json");
         var data = {
             warenkorb : Warenkopf,
             address : address
         }
         var dataJson  = JSON.stringify(data);
-        console.log(data);
-        console.log(dataJson);
         xhttp.send(dataJson);
     }else{
         alert("please fill all of informations !!");

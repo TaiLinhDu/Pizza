@@ -53,7 +53,7 @@ abstract class Page
         $host = "localhost";
         $user = "root";
         $pdw = "";
-        $this->_database = new MySQLi($host,$user,$pdw,"asiapizza" ) /* to do: create instance of class MySQLi */;
+        $this->_database = new MySQLi($host,$user,$pdw,"asianpizza" ) /* to do: create instance of class MySQLi */;
 
         // Verbindung prüfen:
         if (mysqli_connect_errno())
